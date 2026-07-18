@@ -269,28 +269,30 @@ const IotTraining = () => {
   return (
     <div className="w-full min-h-screen text-slate-800 font-sans pb-16">
       {/* HEADER HERO SECTION */}
-      <header className="w-full relative overflow-hidden py-12 px-4 text-center border-b border-slate-200">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
-        <div className="max-w-4xl mx-auto relative z-10">
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-600 px-3 py-1 bg-blue-50 rounded-full">
-            45-Day Industry-Oriented Professional training Program
-          </span>
-          <h1 className="text-3xl md:text-5xl font-extrabold mt-2 mb-4 tracking-tight text-slate-900 leading-tight">
-            <span className="md:whitespace-nowrap">
-              Genixotech{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-                IoT Engineer
+
+      <header className="w-full flex justify-center relative overflow-hidden py-8 px-4 text-center border-b border-slate-200">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 pointer-events-none" />
+        <div className="grid lg:grid-cols-2 grid-cols-1 items-center w-[85%]">
+          <div className=" mx-auto relative z-10">
+            <h1 className="text-3xl md:text-4xl font-bold mt-1 mb-4 tracking-tight text-white leading-tight">
+              <span className="md:whitespace">
+                Genixotech IoT Engineer Professional Internship
               </span>
-            </span>
-            <span className="md:block mt-1 md:mt-2">
-              Professional Internship
-            </span>
-          </h1>
-          <p className="text-slate-600 max-w-3xl mx-auto text-base md:text-lg font-medium leading-relaxed">
-            Master Arduino, ESP8266, NodeMCU, Raspberry Pi, Python, MQTT, IoT
-            Clouds, Sensors, Wireless Communication, and Smart Automation
-            through real-world, project-based learning.
-          </p>
+              <span className="md:block mt-1 md:mt-2">Engineer Program</span>
+            </h1>
+            <p className="text-white max-w-3xl mx-auto text-base md:text-lg font-medium leading-relaxed">
+              Master Arduino, ESP8266, NodeMCU, Raspberry Pi, Python, MQTT, IoT
+              Clouds, Sensors, Wireless Communication, and Smart Automation
+              through real-world, project-based learning.
+            </p>
+          </div>
+          <div className="z-10 flex justify-center">
+            <img
+              className="h-100 w-100"
+              src="/gifs/web (7).gif"
+              alt="embeddedImg"
+            />
+          </div>
         </div>
       </header>
 
@@ -313,7 +315,7 @@ const IotTraining = () => {
               {
                 label: "45 Days Duration",
                 desc: "7-Week Focused Tracks",
-                icon: <FaClock className="text-blue-500" />,
+                icon: <FaClock className="text-purple-500" />,
               },
               {
                 label: "100% Practical Labs",
@@ -323,7 +325,7 @@ const IotTraining = () => {
               {
                 label: "Hardware Centric",
                 desc: "Active Architecture",
-                icon: <FaCode className="text-blue-500" />,
+                icon: <FaCode className="text-purple-500" />,
               },
               {
                 label: "15+ Smart Projects",
@@ -333,23 +335,21 @@ const IotTraining = () => {
               {
                 label: "Career & Placement",
                 desc: "Portfolio Validation",
-                icon: <FaBriefcase className="text-blue-500" />,
+                icon: <FaBriefcase className="text-purple-500" />,
               },
             ].map((stat, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-xl bg-slate-50/50 border border-slate-100 flex flex-col items-center"
+                className="p-6 rounded-2xl border border-slate-200 transition-all duration-300 hover:bg-blue-400 hover:text-white hover:border-blue-700 flex flex-col items-center"
               >
-                <div className="text-2xl mb-2">{stat.icon}</div>
-                <h4 className="text-sm font-bold text-slate-900">
-                  {stat.label}
-                </h4>
-                <p className="text-xs text-slate-500 mt-0.5">{stat.desc}</p>
+                <div className={`text-2xl mb-2`}>{stat.icon}</div>
+                <h4 className="text-sm font-bold">{stat.label}</h4>
+                <p className="text-xs mt-0.5">{stat.desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 justify-center text-xs font-semibold text-slate-600 mt-8 pt-6 border-t border-slate-100 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 justify-center text-xs font-semibold text-slate-500 mt-8 pt-6 border-t border-slate-100 text-center">
             <div className="flex items-center gap-2 justify-center">
               <FaCircleCheck className="text-green-500" /> Real Hardware
               Automation Kits

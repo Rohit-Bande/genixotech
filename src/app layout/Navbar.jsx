@@ -72,6 +72,7 @@ const Navbar = () => {
             </h1>
           </div>
           <div className="flex gap-4 text-amber-50 text-[1.2rem] items-center">
+            <h1 className="text-[.8rem]">ISO Certified</h1>
             <a href="https://www.facebook.com/genixotech/" target="_blank">
               <TiSocialFacebook className="hover:text-[#7696fd] cursor-pointer" />
             </a>
@@ -89,7 +90,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="h-25 w-full shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] bg-white backdrop-blur-sm sticky top-0 z-20 flex justify-center">
+      <div className="lg:h-23 w-full shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] bg-white backdrop-blur-sm sticky top-0 z-20 flex justify-center">
         <div className="w-[83%] flex items-center justify-between">
           <h1 className="text-4xl font-bold text-black">
             <img
@@ -167,12 +168,6 @@ const Navbar = () => {
 
             <li
               className="hover:text-[#1D52FF] cursor-pointer"
-              onClick={() => navigate("/contactUs")}
-            >
-              Contact Us
-            </li>
-            <li
-              className="hover:text-[#1D52FF] cursor-pointer"
               onClick={() => {
                 navigate("/help");
                 setTimeout(() => {
@@ -183,6 +178,12 @@ const Navbar = () => {
               }}
             >
               Help
+            </li>
+
+            <li onClick={() => navigate("/contactUs")}>
+              <span className="cursor-pointer bg-[length:200%_100%] bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-left hover:bg-right transition-all duration-500 px-4 py-2 rounded text-white">
+                Contact Us
+              </span>
             </li>
           </ul>
 
@@ -209,16 +210,16 @@ const Navbar = () => {
               }`}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center py-5 pl-5">
+              <div className="flex items-center py-5 pl-5  mt-3">
                 <img
-                  src="Inspire Future Innovators (4).png"
+                  src="/images/bg logo.png"
                   alt=""
-                  className="w-25 "
+                  className="w-22 ml-2 mb-5 "
                 />
               </div>
 
               {/* MOBILE SIDEBAR MENU CONTAINER */}
-              <ul className="flex flex-col gap-5 text-[1rem] ml-5 w-[80%] text-black z-100 bg-white">
+              <ul className="flex flex-col gap-5 text-[1.1rem] ml-10 w-[80%] text-black z-100 bg-white">
                 <li
                   className="hover:text-[#c48e25] cursor-pointer flex items-center gap-3"
                   onClick={() => {

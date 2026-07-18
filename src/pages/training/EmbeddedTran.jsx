@@ -291,28 +291,29 @@ const EmbeddedTran = () => {
 
   return (
     <div className="w-full min-h-screen text-slate-800 font-sans pb-16">
-      <header className="w-full relative overflow-hidden py-10 px-4 text-center border-b border-slate-200">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
-        <div className="max-w-4xl mx-auto relative z-10">
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-600 px-3 py-1 bg-blue-50 rounded-full">
-            Become an Industry-Ready Embedded Systems Engineer in Just 6 Months
-          </span>
-          <h1 className="text-3xl md:text-5xl font-extrabold mt-1 mb-4 tracking-tight text-slate-900 leading-tight">
-            {/* Keeps Genixotech and Embedded Systems locked together on desktop web viewports */}
-            <span className="md:whitespace-nowrap">
-              Genixotech{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-                Embedded Systems
+      <header className="w-full flex justify-center relative overflow-hidden py-8 px-4 text-center border-b border-slate-200">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 pointer-events-none" />
+        <div className="grid lg:grid-cols-2 grid-cols-1 items-center w-[85%]">
+          <div className="max-w-4xl mx-auto relative z-10">
+            <h1 className="text-3xl md:text-4xl font-bold mt-1 mb-4 tracking-tight text-white leading-tight">
+              <span className="md:whitespace-nowrap">
+                Genixotech Embedded Systems
               </span>
-            </span>{" "}
-            {/* Pushes this down on desktop viewports */}
-            <span className="md:block mt-1 md:mt-2">Engineer Program</span>
-          </h1>
-          <p className="text-slate-600 max-w-3xl mx-auto text-base md:text-lg font-medium leading-relaxed">
-            Learn C Programming, Embedded C, Linux, 8051, AVR, ARM, RTOS, PCB
-            Design, Networking, IoT, and build real industry projects with
-            expert mentorship and placement assistance.
-          </p>
+              <span className="md:block mt-1 md:mt-2">Engineer Program</span>
+            </h1>
+            <p className="text-white max-w-3xl mx-auto text-base md:text-lg font-medium leading-relaxed">
+              Learn C Programming, Embedded C, Linux, 8051, AVR, ARM, RTOS, PCB
+              Design, Networking, IoT, and build real industry projects with
+              expert mentorship and placement assistance.
+            </p>
+          </div>
+          <div className="z-10 flex justify-center">
+            <img
+              className="h-100 w-100"
+              src="/gifs/web (6).gif"
+              alt="embeddedImg"
+            />
+          </div>
         </div>
       </header>
 

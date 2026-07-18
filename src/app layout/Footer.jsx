@@ -67,13 +67,13 @@ const Footer = () => {
                 </li>
                 <li
                   className="hover:text-[#7696fd]"
-                  onClick={() => navigate("/coming-soon")}
+                  onClick={() => navigate("/career")}
                 >
                   Career
                 </li>
                 <li
                   className="hover:text-[#7696fd]"
-                  onClick={() => navigate("/coming-soon")}
+                  onClick={() => navigate("/blog")}
                 >
                   Blog
                 </li>

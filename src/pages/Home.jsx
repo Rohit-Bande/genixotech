@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import EnquiryForm from "../components/EnquiryForm";
 import SliderComp from "../components/SliderComp";
+import { HelmetProvider } from "react-helmet-async";
 
 // Icons used for the design layout (Lucide React style fallback/SVG)
 // Change FaCpu to FaMicrochip
@@ -58,12 +59,12 @@ const Home = () => {
           autoPlay
           muted
           loop
-          className="w-full h-full object-cover relative bg-white/50 min-h-screen min-w-full"
+          className="w-[100rem] lg:h-[30rem] h-[43rem] object-cover"
         ></video>
 
         <div className="absolute inset-0 bg-black/40"></div>
 
-        <div className="absolute top-[30%] lg:top-[30%] transform -translate-y-1/4 w-[83%] text-white flex gap-8 flex-col p-4 sm:top-1/3 sm:-translate-y-1/3">
+        <div className="absolute top-[30%] ml-22 lg:top-[30%] transform -translate-y-1/4 w-[83%] text-white flex gap-8 flex-col p-4 sm:top-1/3 sm:-translate-y-1/3">
           <p className="font-bold">HELLO STUDENTS</p>
           <p className="text-3xl sm:text-5xl font-extrabold tracking-wider text-[#839ffc] bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
             {displayText}

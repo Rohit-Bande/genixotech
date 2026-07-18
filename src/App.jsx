@@ -22,6 +22,9 @@ import Embedded from "./pages/wokshop/Embedded";
 import EmbeddedTran from "./pages/training/EmbeddedTran";
 import Iot from "./pages/wokshop/Iot";
 import IotTraining from "./pages/training/IotTraining";
+import { HelmetProvider } from "react-helmet-async";
+import BlogPage from "./pages/Blog";
+import CareersPage from "./pages/CareersPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -107,19 +110,29 @@ function App() {
           path: "iotTraining",
           element: <IotTraining />,
         },
+        {
+          path: "blog",
+          element: <BlogPage />,
+        },
+        {
+          path: "career",
+          element: <CareersPage />,
+        },
       ],
     },
   ]);
 
   return (
     <>
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          style: { zIndex: 99999 },
-        }}
-      />
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: { zIndex: 99999 },
+          }}
+        />
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </>
   );
 }

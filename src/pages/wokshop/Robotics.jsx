@@ -1,1058 +1,1050 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom";
-import { IoMail } from "react-icons/io5";
+import React, { useRef, useState, useEffect } from "react";
 import {
-  FaPhone,
-  FaBuildingColumns,
-  FaSchool,
-  FaGraduationCap,
-} from "react-icons/fa6";
+  BookOpen,
+  Clock,
+  Cpu,
+  Award,
+  CheckCircle2,
+  Layers,
+  Hammer,
+  Sparkles,
+  Zap,
+  Building2,
+  Briefcase,
+  GraduationCap,
+  ArrowRight,
+  Terminal,
+  Code2,
+} from "lucide-react";
 
-const RoboticsPage = () => {
-  // 1. Create Refs for Smooth Scrolling
-  const schoolRef = useRef(null);
-  const collegeRef = useRef(null);
-  const instituteRef = useRef(null);
+export default function RoboticsWorkshopPage() {
+  const [activeTab, setActiveTab] = useState("day1");
+  const [activeFormat, setActiveFormat] = useState(
+    "3-Day Advanced Robotics Workshop (Recommended)",
+  );
 
-  const scrollToSection = (elementRef) => {
-    elementRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+  const syllabusRef = useRef(null);
+
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    window.scrollTo({ top: 0, left: 0 });
+
+    const previousTitle = document.title;
+    document.title =
+      "Robotics Workshop for Engineering Colleges in Indore | Genixotech";
+
+    const upsertMeta = (selector, attributes) => {
+      let element = document.head.querySelector(selector);
+      const created = !element;
+      if (!element) {
+        element = document.createElement("meta");
+        document.head.appendChild(element);
+      }
+      Object.entries(attributes).forEach(([key, value]) =>
+        element.setAttribute(key, value),
+      );
+      return created ? element : null;
+    };
+
+    const createdMeta = [
+      upsertMeta('meta[name="description"]', {
+        name: "description",
+        content:
+          "Book Genixotech's hands-on robotics workshop for engineering colleges in Indore. Learn Arduino, sensors, motors, robot programming and build live robotic projects.",
+      }),
+      upsertMeta('meta[name="keywords"]', {
+        name: "keywords",
+        content:
+          "robotics workshop for engineering colleges, robotics workshop Indore, Arduino robotics training, college robotics workshop, robotics training in Indore",
+      }),
+      upsertMeta('meta[property="og:title"]', {
+        property: "og:title",
+        content: "Robotics Workshop for Engineering Colleges | Genixotech",
+      }),
+      upsertMeta('meta[property="og:description"]', {
+        property: "og:description",
+        content:
+          "Practical robotics training with Arduino, sensors, motors, programming and live robot-building challenges.",
+      }),
+      upsertMeta('meta[property="og:type"]', {
+        property: "og:type",
+        content: "website",
+      }),
+    ].filter(Boolean);
+
+    const schema = document.createElement("script");
+    schema.type = "application/ld+json";
+    schema.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: "Robotics Workshop for Engineering Colleges",
+      description:
+        "A practical robotics workshop covering Arduino, embedded programming, sensors, actuators, motor control and autonomous robot development.",
+      provider: {
+        "@type": "Organization",
+        name: "Genixotech",
+        url: "https://genixotech.com/",
+      },
+      areaServed: { "@type": "City", name: "Indore" },
+      inLanguage: "en-IN",
     });
+    document.head.appendChild(schema);
+
+    return () => {
+      document.title = previousTitle;
+      createdMeta.forEach((meta) => meta.remove());
+      schema.remove();
+    };
+  }, []);
+
+  const scrollToSection = (e, elementRef) => {
+    e.preventDefault();
+    if (elementRef.current) {
+      elementRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
 
+  const highlights = [
+    "100% Practical & Hands-on Learning",
+    "Industry-Oriented Robotics Curriculum",
+    "Arduino & Embedded C Programming",
+    "Mobile Robot Development",
+    "Sensors, Motors & Robot Control",
+    "Automation & Industry 4.0 Exposure",
+    "Expert Industry Mentors",
+    "Mini Project Development",
+    "Participation Certificate",
+    "Career Guidance & Internship Awareness",
+  ];
+
+  const targetAudiences = [
+    "Engineering Colleges",
+    "Polytechnic Institutes",
+    "Diploma Colleges",
+    "Technical Universities",
+    "Robotics & Embedded Clubs",
+    "Innovation Cells",
+    "AICTE Skill Development Programs",
+    "Placement Readiness Programs",
+    "Technical Festivals",
+    "Faculty Development Programs",
+  ];
+
+  const projects = [
+    "Line Follower Robot",
+    "Obstacle Avoidance Robot",
+    "Bluetooth Controlled Robot",
+    "Edge Detection Robot",
+    "Autonomous Robotics Challenge",
+  ];
+
+  const outcomes = [
+    "Understand Robotics Architecture",
+    "Build Arduino-based Mobile Robots",
+    "Interface Sensors & Actuators",
+    "Develop Basic Robotics Applications",
+    "Control DC Motors Using Motor Drivers",
+    "Program Line Following and Obstacle Avoidance",
+    "Understand Automation and Industry 4.0 Applications",
+    "Build a Foundation for Advanced Robotics Development",
+  ];
+
+  const deliverables = [
+    "Genixotech Participation Certificate",
+    "Workshop Study Material",
+    "Practical Session Notes",
+    "Functional Robot-Building Experience",
+    "Career Guidance Session",
+    "Internship & Placement Roadmap",
+  ];
+
+  const choices = [
+    "Industry-Oriented Robotics Curriculum",
+    "Practical Learning with Real Hardware",
+    "Expert Industry Mentors",
+    "Arduino-Based Robotics Training",
+    "Automation & Industry 4.0 Exposure",
+    "Project-Based Learning Methodology",
+    "Career Guidance & Internship Pathways",
+    "Customized Workshops for Engineering Departments",
+  ];
+
+  const careerPaths = [
+    "45-Day Robotics Engineer Professional Internship",
+    "30-Day Robotics Professional Internship",
+    "6-Month Embedded Systems Engineer Program (Flagship)",
+    "Industry Projects & Placement Assistance",
+  ];
+
+  const formats = [
+    {
+      name: "2-Hour Robotics Awareness Session",
+      desc: "Ideal for orientation programs and introductory seminars.",
+    },
+    {
+      name: "Half-Day Robotics Workshop",
+      desc: "Quick introduction to Arduino, sensors, and autonomous robots.",
+    },
+    {
+      name: "1-Day Robotics Workshop",
+      desc: "Fundamentals of Robotics with practical demonstrations and live experiments.",
+    },
+    {
+      name: "2-Day Intensive Robotics Workshop",
+      desc: "Arduino programming, sensor interfacing, motor-driver control, chassis assembly, and a functional robot project.",
+    },
+    {
+      name: "3-Day Advanced Robotics Workshop (Recommended)",
+      desc: "Complete hands-on training covering embedded systems, Arduino, sensors, motors, chassis assembly, autonomous navigation, Bluetooth control, and an innovation challenge.",
+    },
+  ];
+
   return (
-    <div className="w-full min-h-screen text-slate-800 font-sans pb-16">
-      {/* --- HERO BANNER --- */}
-      <div className="w-full relative overflow-hidden py-16 px-4 text-center border-b border-slate-200">
+    <div className="min-h-screen text-slate-800 font-sans selection:bg-purple-500/30 bg-white">
+      {/* HERO SECTION */}
+      <header className="relative overflow-hidden py-20 lg:py-5 border-b border-slate-200">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight text-slate-900 relative z-10">
-          Robotics Workshops &
-          <span className="bg-gradient-to-r from-blue-500 pl-2 to-purple-500 bg-clip-text text-transparent">
-            Training
-          </span>
-        </h1>
-        <p className="text-slate-600 max-w-2xl mx-auto text-lg relative z-10">
-          Transforming campuses into hubs of innovation. We introduce students
-          to Electronics, Coding, AI, and STEM through hands-on building.
-        </p>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-4 -mt-10 mb-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div
-            onClick={() => scrollToSection(schoolRef)}
-            className="bg-white p-8 rounded-xl shadow-lg border border-slate-200 flex flex-col items-center text-center cursor-pointer hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group"
-          >
-            <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-              <FaSchool className="text-3xl" />
-            </div>
-            <h3 className="text-xl font-bold mb-2 text-slate-900">
-              For Schools
-            </h3>
-            <p className="text-slate-500 text-sm">
-              Grades 6–12, ATL Labs, Science exhibitions, and alignment with NEP
-              2020.
-            </p>
-            <span className="mt-4 text-sm font-semibold text-blue-600 group-hover:underline">
-              Explore Workshops &rarr;
-            </span>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-800 mb-6 border border-slate-200">
+            {/* <Zap size={12} className="text-purple-500 fill-current" /> Learn •
+            Connect • Innovate */}
           </div>
-
-          <div
-            onClick={() => scrollToSection(collegeRef)}
-            className="bg-white p-8 rounded-xl shadow-lg border border-slate-200 flex flex-col items-center text-center cursor-pointer hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group"
-          >
-            <div className="w-16 h-16 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
-              <FaGraduationCap className="text-3xl" />
-            </div>
-            <h3 className="text-xl font-bold mb-2 text-slate-900">
-              For Colleges
-            </h3>
-            <p className="text-slate-500 text-sm">
-              Engineering, B.Sc, Diploma programs, Minor/Major projects & IoT
-              bootcamps.
-            </p>
-            <span className="mt-4 text-sm font-semibold text-purple-600 group-hover:underline">
-              Explore Programs &rarr;
+          <h1 className="text-4xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-slate-900">
+            Robotics Workshop
+            <span className="bg-gradient-to-r from-blue-500 px-2 to-purple-500 bg-clip-text text-transparent">
+              for Engineering Colleges
             </span>
-          </div>
+          </h1>
 
-          <div
-            onClick={() => scrollToSection(instituteRef)}
-            className="bg-white p-8 rounded-xl shadow-lg border border-slate-200 flex flex-col items-center text-center cursor-pointer hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group"
-          >
-            <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-              <FaBuildingColumns className="text-3xl" />
-            </div>
-            <h3 className="text-xl font-bold mb-2 text-slate-900">
-              For Coaching & Institutes
-            </h3>
-            <p className="text-slate-500 text-sm">
-              Value-added skill courses, summer training hubs, and franchise
-              support.
-            </p>
-            <span className="mt-4 text-sm font-semibold text-blue-600 group-hover:underline">
-              Explore Structural Models &rarr;
-            </span>
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-600 mb-4 font-medium">
+            Build Autonomous Robots. Learn by Designing, Coding and Testing.
+          </p>
+          <p className="max-w-2xl mx-auto text-sm sm:text-base text-slate-500 mb-8 leading-relaxed">
+            The Genixotech Robotics Workshop for Engineering Colleges is a 3-day
+            intensive, hands-on training program designed to introduce students
+            to Robotics, Embedded Systems, Arduino, sensors, motors, robot
+            assembly, autonomous navigation, sensors, motors, robot control,
+            autonomous navigation, and Industry 4.0 through practical learning
+            and real-world applications.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="w-full sm:w-auto px-8 py-3 rounded-xl font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-blue-500/25 hover:opacity-95 transition-all transform hover:-translate-y-0.5">
+              Request College Proposal
+            </button>
+            <a
+              onClick={(e) => scrollToSection(e, syllabusRef)}
+              href="#syllabus"
+              className="w-full sm:w-auto px-8 py-3 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition-all text-center shadow-sm"
+            >
+              Explore Curriculum
+            </a>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* --- CONTENT CONTAINER --- */}
-      <div className="max-w-6xl mx-auto px-4 space-y-24">
-        {/* =======================================================
-            SECTION 1: SCHOOLS
-            ======================================================= */}
-        <section
-          ref={schoolRef}
-          className="scroll-mt-24 bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-slate-200"
-        >
-          <div className="border-b border-slate-100 pb-6 mb-8">
-            <div className="text-center mb-10">
-              <span className="text-xl font-bold uppercase tracking-wider text-blue-600 px-3 py-1 bg-blue-50 rounded-full">
-                Grades 6 to 12
-              </span>
-            </div>
-
-            <h2 className="text-3xl font-bold text-slate-900 mt-2">
-              Robotics Workshop for
-              <span className="bg-gradient-to-r from-blue-500 to-purple-500 pl-2 bg-clip-text text-transparent">
-                Schools
-              </span>
-            </h2>
-            <p className="text-slate-500 mt-1">
-              Inspire Future Innovators with Genixotech
-            </p>
-          </div>
-
-          <p className="text-lg text-slate-700 leading-relaxed mb-10">
-            Transform your school into a hub of innovation with Genixotech's
-            Robotics Workshop. Our workshop is designed to introduce students to
-            Robotics, Electronics, Coding, Artificial Intelligence concepts, and
-            STEM education through exciting hands-on activities. Students don't
-            just learn—they build, test, innovate, and experience engineering in
-            action.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div>
-              <h3 className="text-lg font-bold text-slate-900 mb-4">
-                Why Schools Choose Genixotech
-              </h3>
-              <ul className="space-y-2 list-disc list-inside text-slate-600 pl-1">
-                <li>100% practical, activity-based learning</li>
-                <li>Designed for Grades 6–12</li>
-                <li>Aligned with NEP 2020 and STEM education</li>
-                <li>Experienced industry mentors</li>
-                <li>Modern robotics kits and Arduino platforms</li>
-                <li>
-                  Customizable for school events, ATL labs and science
-                  exhibitions
-                </li>
-                <li>Participation certificates for students</li>
-              </ul>
+      {/* QUICK INFO BAR */}
+      <section className="border-b border-slate-200 bg-white/60 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
+          <div className="flex items-center gap-4 justify-center sm:justify-start">
+            <div className="p-3 rounded-lg bg-blue-500/10 text-blue-600">
+              <Clock size={24} />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-slate-900 mb-4">
-                Perfect For
-              </h3>
-              <ul className="space-y-2 list-disc list-inside text-slate-600 pl-1">
-                <li>STEM Education Programs</li>
-                <li>Science & Technology Week</li>
-                <li>Annual School Events</li>
-                <li>ATL / Innovation Labs</li>
-                <li>Summer & Winter Camps</li>
-                <li>Career Awareness Programs</li>
-                <li>Teacher Development Programs</li>
-              </ul>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                Workshop Formats
+              </h4>
+              <p className="text-sm font-semibold text-slate-700">
+                Seminar / 1-Day / 2-Day / 3-Day Advanced
+              </p>
             </div>
           </div>
-
-          <h3 className="text-xl font-bold text-slate-900 mb-6 text-center">
-            Dedicated Ecosystem Alignment
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <div className="bg-slate-50/60 p-5 rounded-xl border border-slate-100">
-              <h4 className="font-bold text-blue-700 mb-2">
-                For School Principals
-              </h4>
-              <ul className="text-sm space-y-1 text-slate-600 list-disc list-inside">
-                <li>Enhances your school's innovation ecosystem</li>
-                <li>Supports practical implementation of NEP 2020</li>
-                <li>Suitable for CBSE, ICSE and State Board schools</li>
-                <li>Excellent value addition during admissions</li>
-              </ul>
-            </div>
-            <div className="bg-slate-50/60 p-5 rounded-xl border border-slate-100">
-              <h4 className="font-bold text-purple-700 mb-2">For Teachers</h4>
-              <ul className="text-sm space-y-1 text-slate-600 list-disc list-inside">
-                <li>Interactive classroom demonstrations</li>
-                <li>Faculty orientation sessions available</li>
-                <li>Opportunity to establish Robotics or STEM Clubs</li>
-                <li>Long-term support for school initiatives</li>
-              </ul>
-            </div>
-            <div className="bg-slate-50/60 p-5 rounded-xl border border-slate-100">
-              <h4 className="font-bold text-blue-700 mb-2">For Parents</h4>
-              <ul className="text-sm space-y-1 text-slate-600 list-disc list-inside">
-                <li>Builds confidence and curiosity</li>
-                <li>Develops problem-solving skills & reduces screen time</li>
-                <li>Introduces future career opportunities in AI</li>
-              </ul>
-            </div>
-            <div className="bg-slate-50/60 p-5 rounded-xl border border-slate-100">
-              <h4 className="font-bold text-purple-700 mb-2">For Students</h4>
-              <ul className="text-sm space-y-1 text-slate-600 list-disc list-inside">
-                <li>Build real robots & learn Arduino</li>
-                <li>Work with active sensors and motors</li>
-                <li>Participate in instant innovation challenges</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="bg-slate-900 text-white rounded-xl p-6 md:p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h4 className="font-bold text-blue-400 border-b border-slate-800 pb-2 mb-3">
-                Workshop Curriculum
-              </h4>
-              <ul className="text-sm space-y-1 text-slate-300">
-                <li>• Intro to Robotics & STEM</li>
-                <li>• Basic Electronics & Arduino</li>
-                <li>• Sensors, Actuators & Motors</li>
-                <li>• Robot Assembly & Testing</li>
-                <li>• Demo & Challenge</li>
-              </ul>
+          <div className="flex items-center gap-4 justify-center sm:justify-start">
+            <div className="p-3 rounded-lg bg-purple-500/10 text-purple-600">
+              <BookOpen size={24} />
             </div>
             <div>
-              <h4 className="font-bold text-purple-400 border-b border-slate-800 pb-2 mb-3">
-                Hands-on Projects
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                Core Methodology
               </h4>
-              <ul className="text-sm space-y-1 text-slate-300">
-                <li>• LED Blinking Circuit</li>
-                <li>• Automatic Night Lamp</li>
-                <li>• Ultrasonic Distance Meter</li>
-                <li>• Line Follower & Obstacle Robot</li>
-                <li>• Bluetooth Controlled Robot</li>
-              </ul>
+              <p className="text-sm font-semibold text-slate-700">
+                100% Practical & Hardware Lab Centric
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 justify-center sm:justify-start">
+            <div className="p-3 rounded-lg bg-emerald-500/10 text-emerald-600">
+              <Award size={24} />
             </div>
             <div>
-              <h4 className="font-bold text-blue-400 border-b border-slate-800 pb-2 mb-3">
-                Learning Outcomes
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                Deliverable Kit Outputs
               </h4>
-              <ul className="text-sm space-y-1 text-slate-300">
-                <li>• Understand robotics frameworks</li>
-                <li>• Write clean modular Arduino code</li>
-                <li>• Build functional circuit paths</li>
-                <li>• Analytical thinking growth</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap justify-between items-center gap-4">
-            <div>
-              <span className="font-semibold text-slate-900">
-                Available Formats:
-              </span>
-              <span className="text-xs text-slate-500 block">
-                2-Hr / Half-Day / 1-Day / 2-Day / Bootcamps
-              </span>
-            </div>
-            <div className="text-sm text-slate-600">
-              <span className="font-semibold text-slate-900">Included:</span>{" "}
-              Expert trainer, hardware kits, worksheets, certificates.
-            </div>
-          </div>
-        </section>
-
-        {/* =======================================================
-            SECTION 2: COLLEGES
-            ======================================================= */}
-        <section
-          ref={collegeRef}
-          className="scroll-mt-24 bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-slate-200"
-        >
-          <div className="border-b border-slate-100 pb-6 mb-8">
-            <div className="text-center mb-10">
-              <span className="text-xl font-bold uppercase tracking-wider text-purple-600 px-3 py-1 bg-purple-50 rounded-full">
-                Graduates & Engineers
-              </span>
-            </div>
-            <h2 className="text-3xl font-bold text-slate-900 mt-2">
-              Robotics Workshop for
-              <span className="bg-gradient-to-r from-blue-500 to-purple-500 pl-2 bg-clip-text text-transparent">
-                College Students
-              </span>
-            </h2>
-            <p className="text-slate-500 mt-1">
-              Build. Program. Innovate. Experience Industry-Ready Robotics with
-              Genixotech
-            </p>
-          </div>
-
-          <p className="text-lg text-slate-700 leading-relaxed mb-6">
-            Step beyond textbooks and discover how modern robots are designed,
-            programmed, and controlled. The Genixotech Robotics Workshop for
-            College Students is an intensive, hands-on training program designed
-            to introduce engineering and diploma students to Robotics, Embedded
-            Systems, Arduino, IoT, Electronics, Automation, and Artificial
-            Intelligence through real-world applications and practical projects.
-          </p>
-          <p className="text-slate-600 leading-relaxed mb-10">
-            Students don't just assemble robots—they understand the technology
-            behind them, write code, interface sensors, solve engineering
-            problems, and build working prototypes.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div>
-              <h3 className="text-lg font-bold text-slate-900 mb-4">
-                Why Engineering Colleges Choose Genixotech
-              </h3>
-              <ul className="space-y-2 list-disc list-inside text-slate-600 pl-1">
-                <li>100% Practical & Hands-on Learning approach</li>
-                <li>Industry-oriented robotics curriculum track</li>
-                <li>Learn with cutting edge Arduino & ESP32 Platforms</li>
-                <li>
-                  Seamless Programming + Electronics + Robotics Integration
-                </li>
-                <li>Real Hardware kit experience for every student cohort</li>
-                <li>
-                  Build multiple functional mini projects during the workshop
-                </li>
-                <li>Industry Expert Trainers & project mentors</li>
-                <li>Official Genixotech Participation Certificate</li>
-                <li>
-                  Career guidance session & placement/internship roadmap
-                  awareness
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-slate-900 mb-4">
-                Perfect For
-              </h3>
-              <ul className="space-y-2 list-disc list-inside text-slate-600 pl-1">
-                <li>Engineering Colleges & Technical Universities</li>
-                <li>Polytechnic Colleges & Diploma Institutes</li>
-                <li>Skill Development & Incubation Center Activities</li>
-                <li>Campus Robotics & Electronics Clubs</li>
-                <li>AICTE Skill Development & Activity Points Mapping</li>
-                <li>National Hackathon & Robofest Preparation</li>
-                <li>Pre-Placement & Industry Readiness Programs</li>
-                <li>Departmental Induction & Custom Bootcamps</li>
-              </ul>
-            </div>
-          </div>
-
-          <h3 className="text-xl font-bold text-slate-900 mb-6 text-center">
-            Dedicated Ecosystem Alignment
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <div className="bg-slate-50/60 p-5 rounded-xl border border-slate-100">
-              <h4 className="font-bold text-purple-700 mb-2">
-                For College Management
-              </h4>
-              <ul className="text-sm space-y-1 text-slate-600 list-disc list-inside">
-                <li>Enhance institutional innovation & technical excellence</li>
-                <li>
-                  Supports AICTE, NBA and NAAC outcome-based education metrics
-                </li>
-                <li>Strengthens critical industry-academia collaborations</li>
-                <li>
-                  Excellent metrics for technical festivals and induction tracks
-                </li>
-              </ul>
-            </div>
-            <div className="bg-slate-50/60 p-5 rounded-xl border border-slate-100">
-              <h4 className="font-bold text-blue-700 mb-2">
-                For Training & Placement Cell
-              </h4>
-              <ul className="text-sm space-y-1 text-slate-600 list-disc list-inside">
-                <li>Improve students' practical, baseline technical skills</li>
-                <li>Prepare engineering grads for technical core interviews</li>
-                <li>
-                  Introduce industry-standard microcontroller development
-                  platforms
-                </li>
-                <li>Encourage production scale project-based logic building</li>
-              </ul>
-            </div>
-            <div className="bg-slate-50/60 p-5 rounded-xl border border-slate-100">
-              <h4 className="font-bold text-purple-700 mb-2">
-                For Faculty Members
-              </h4>
-              <ul className="text-sm space-y-1 text-slate-600 list-disc list-inside">
-                <li>
-                  Direct hands-on exposure to emerging automated technologies
-                </li>
-                <li>
-                  Faculty Development Program (FDP) collaborative frameworks
-                </li>
-                <li>Robotics Club structural guidance and layout mentorship</li>
-                <li>
-                  Continuous academic year support from Genixotech engineers
-                </li>
-              </ul>
-            </div>
-            <div className="bg-slate-50/60 p-5 rounded-xl border border-slate-100">
-              <h4 className="font-bold text-blue-700 mb-2">
-                For College Students
-              </h4>
-              <ul className="text-sm space-y-1 text-slate-600 list-disc list-inside">
-                <li>
-                  Learn production robotics architecture from Industry Experts
-                </li>
-                <li>
-                  Write robust embedded programs using modular code patterns
-                </li>
-                <li>
-                  Interface complex sensor arrays and mechanical driver motors
-                </li>
-                <li>
-                  Explore high-paying career opportunities across IoT platforms
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Core Syllabus Layout Grid */}
-          <div className="bg-slate-900 text-white rounded-xl p-6 md:p-8 space-y-8 mb-12">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-b border-slate-800 pb-6">
-              <div>
-                <h4 className="font-bold text-blue-400 text-sm tracking-wider uppercase mb-3">
-                  Technologies Covered
-                </h4>
-                <div className="text-xs space-y-2 text-slate-300">
-                  <p>
-                    <strong className="text-white">Programming:</strong>{" "}
-                    Embedded C, Arduino Programming
-                  </p>
-                  <p>
-                    <strong className="text-white">Hardware:</strong> Arduino
-                    UNO, ESP32 Microcontrollers
-                  </p>
-                  <p>
-                    <strong className="text-white">Peripherals:</strong>{" "}
-                    Actuators, Relay Modules, Sensor Arrays
-                  </p>
-                  <p>
-                    <strong className="text-white">Communication:</strong> UART,
-                    Bluetooth, Wi-Fi Protocols
-                  </p>
-                  <p>
-                    <strong className="text-white">Software:</strong> Arduino
-                    IDE, Integrated Tools
-                  </p>
-                </div>
-              </div>
-              <div>
-                <h4 className="font-bold text-purple-400 text-sm tracking-wider uppercase mb-3">
-                  Hands-on Projects Built
-                </h4>
-                <ul className="text-xs space-y-1 text-slate-300">
-                  <li>• LED Blinking Orchestration System</li>
-                  <li>• Smart Traffic Light Management Matrix</li>
-                  <li>• Automatic Night Lamp Control Circuit</li>
-                  <li>• Ultrasonic Precision Distance Meter</li>
-                  <li>• Autonomous Obstacle Avoiding Robot</li>
-                  <li>• Precision Line Follower Robot</li>
-                  <li>• Bluetooth Mobile Controlled Robot</li>
-                  <li>• Smart Home Automation Prototyping</li>
-                  <li>• Live ESP32 IoT Device Cloud Demo</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold text-blue-400 text-sm tracking-wider uppercase mb-3">
-                  Learning Outcomes
-                </h4>
-                <ul className="text-xs space-y-1 text-slate-300">
-                  <li>• Master Embedded System baseline architectures</li>
-                  <li>• Program modular logic architectures with Embedded C</li>
-                  <li>• Interface active sensory endpoints & motor setups</li>
-                  <li>• Build, isolate, and debug hardware prototypes</li>
-                  <li>• Map structural concepts back to Industry 4.0</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Detailed Module Breakdown */}
-            <div>
-              <h4 className="font-bold text-white text-base mb-4 text-center">
-                Detailed Workshop Curriculum Breakdowns
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-                <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-800">
-                  <h5 className="font-bold text-blue-400 mb-1">
-                    Mod 1: Intro & Industry 4.0
-                  </h5>
-                  <p className="text-slate-400">
-                    Evolution of industrial robotics, modern automation trends,
-                    and professional career scaling frameworks.
-                  </p>
-                </div>
-                <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-800">
-                  <h5 className="font-bold text-purple-400 mb-1">
-                    Mod 2: Embedded Systems
-                  </h5>
-                  <p className="text-slate-400">
-                    Electronic component analysis, custom circuit design
-                    configurations, and power rail architecture basics.
-                  </p>
-                </div>
-                <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-800">
-                  <h5 className="font-bold text-blue-400 mb-1">
-                    Mod 3: Arduino Engine
-                  </h5>
-                  <p className="text-slate-400">
-                    Arduino IDE navigation, writing Embedded C frameworks,
-                    managing Analog/Digital I/O loops, and PWM control arrays.
-                  </p>
-                </div>
-                <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-800">
-                  <h5 className="font-bold text-purple-400 mb-1">
-                    Mod 4: Sensors & Actuators
-                  </h5>
-                  <p className="text-slate-400">
-                    Hands-on calibration with IR, Ultrasonic, PIR, LDR,
-                    Temperature endpoints, Servo/DC motors, Relays, and audio
-                    Buzzers.
-                  </p>
-                </div>
-                <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-800">
-                  <h5 className="font-bold text-blue-400 mb-1">
-                    Mod 5: Chassis Assembly
-                  </h5>
-                  <p className="text-slate-400">
-                    Assembling physical modular robot units, linking structural
-                    motors, configuring sensory networks, and live loop tuning.
-                  </p>
-                </div>
-                <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-800">
-                  <h5 className="font-bold text-purple-400 mb-1">
-                    Mod 6: IoT & Networks
-                  </h5>
-                  <p className="text-slate-400">
-                    Bluetooth integration metrics, Wi-Fi connectivity, live
-                    cloud-connected ESP32 demonstrations, and Custom App
-                    control.
-                  </p>
-                </div>
-                <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-800 col-span-1 sm:col-span-2 lg:col-span-2">
-                  <h5 className="font-bold text-emerald-400 mb-1">
-                    Mod 7: Innovation Hackathon Challenge
-                  </h5>
-                  <p className="text-slate-400">
-                    Students aggregate into balanced structural engineering
-                    teams to resolve real-world situational automation
-                    bottlenecks using their complete active toolkit.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Formats and structural tiers */}
-          <h3 className="text-lg font-bold text-slate-900 mb-4">
-            Available Workshop Delivery Models
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-            <div className="border border-slate-200 p-4 rounded-xl text-center bg-slate-50/50">
-              <span className="block font-bold text-slate-900 text-sm">
-                2-Hour Seminar
-              </span>
-              <p className="text-xs text-slate-500 mt-1">
-                Introductory awareness seminars and high-level induction
-                pathways.
-              </p>
-            </div>
-            <div className="border border-slate-200 p-4 rounded-xl text-center bg-slate-50/50">
-              <span className="block font-bold text-slate-900 text-sm">
-                Half-Day Session
-              </span>
-              <p className="text-xs text-slate-500 mt-1">
-                Fast-paced, high-level introductory practical engineering
-                sandbox.
-              </p>
-            </div>
-            <div className="border border-slate-200 p-4 rounded-xl text-center bg-slate-50/50">
-              <span className="block font-bold text-slate-900 text-sm">
-                1-Day Workshop
-              </span>
-              <p className="text-xs text-slate-500 mt-1">
-                Core architectural theory backed by fundamental device
-                demonstrations.
-              </p>
-            </div>
-            <div className="border border-blue-200 p-4 rounded-xl text-center bg-blue-50/30">
-              <span className="block font-bold text-blue-700 text-sm">
-                2-Day Intensive
-              </span>
-              <p className="text-xs text-slate-600 mt-1">
-                Recommended track for custom logic, assembly, and core embedded
-                project work.
-              </p>
-            </div>
-            <div className="border border-purple-200 p-4 rounded-xl text-center bg-purple-50/30">
-              <span className="block font-bold text-purple-700 text-sm">
-                3-Day Advanced
-              </span>
-              <p className="text-xs text-slate-600 mt-1">
-                Most popular structure: Full design loops, hackathon tasks, and
-                placement mentorship paths.
-              </p>
-            </div>
-          </div>
-
-          <div className="pt-6 border-t border-slate-100 flex flex-wrap justify-between items-center gap-4 text-sm">
-            <div>
-              <span className="font-semibold text-slate-900">
-                Deliverables Pack:
-              </span>
-              <span className="text-xs text-slate-500 block">
-                Certificates, study guides, reference system source files,
-                roadmap documents.
-              </span>
-            </div>
-          </div>
-        </section>
-
-        {/* =======================================================
-            SECTION 3: INSTITUTES (Placeholder Remains Intact)
-            ======================================================= */}
-        {/* =======================================================
-            SECTION 3: COACHING & INSTITUTES
-            ======================================================= */}
-        <section
-          ref={instituteRef}
-          className="scroll-mt-24 bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-slate-200"
-        >
-          <div className="border-b border-slate-100 pb-6 mb-8">
-            <div className="text-center mb-10">
-              <span className="text-xl font-bold uppercase tracking-wider text-blue-600 px-3 py-1 bg-blue-50 rounded-full">
-                30-Day Training & Certification
-              </span>
-            </div>
-            <h2 className="text-3xl font-bold text-slate-900 mt-2">
-              Robotics Professional
-              <span className="bg-gradient-to-r from-blue-500 to-purple-500 pl-2 bg-clip-text text-transparent">
-                Internship Program
-              </span>
-            </h2>
-            <p className="text-slate-500 mt-1">
-              Become an Industry-Ready Robotics & Automation Engineer in Just 30
-              Days
-            </p>
-          </div>
-
-          <p className="text-lg text-slate-700 leading-relaxed mb-6">
-            Build Real Robots. Learn Industry Skills. Accelerate Your Career.
-            The Genixotech Robotics Professional Internship Program is an
-            intensive 30-day, project-based internship designed for engineering
-            students, fresh graduates, faculty members, and professionals
-            looking to build practical expertise in Robotics, Embedded Systems,
-            Arduino, ESP32, IoT, Automation, Sensors, and Artificial
-            Intelligence.
-          </p>
-          <p className="text-slate-600 leading-relaxed mb-10">
-            Unlike traditional training programs, this internship focuses
-            heavily on real engineering practices, product development,
-            debugging, teamwork, and industry-oriented projects. We ensure
-            participants gain the standalone confidence and technical toolkits
-            required for internships, higher studies, and high-growth technical
-            career paths.
-          </p>
-
-          {/* Core Info Blocks */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div>
-              <h3 className="text-lg font-bold text-slate-900 mb-4">
-                Why Choose Genixotech?
-              </h3>
-              <ul className="space-y-2 list-disc list-inside text-slate-600 pl-1">
-                <li>100% Practical & Hands-on Learning roadmap</li>
-                <li>Build 10+ Real Hardware Projects from scratch</li>
-                <li>
-                  Seamless Programming + Electronics + Robotics integration
-                </li>
-                <li>Comprehensive Arduino & ESP32 core development</li>
-                <li>Industry-Oriented Curriculum designed by expert mentors</li>
-                <li>Deep-dive into IoT & Automation framework concepts</li>
-                <li>Structured Mini & Capstone production-grade projects</li>
-                <li>
-                  GitHub Portfolio guidance, Resume & LinkedIn profile
-                  optimization
-                </li>
-                <li>
-                  Official Internship Certificate & Career Mentorship support
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-slate-900 mb-4">
-                Who Should Join & Perfect For
-              </h3>
-              <p className="text-sm font-semibold text-slate-700 mb-2">
-                Ideal for:
-              </p>
-              <ul className="space-y-1 list-disc list-inside text-slate-600 pl-1 mb-4 text-sm">
-                <li>Engineering Students (2nd, 3rd & Final Year)</li>
-                <li>Diploma & Polytechnic Students / Fresh Graduates</li>
-                <li>School & College Faculty Members / STEM Trainers</li>
-                <li>Working Professionals, Startup Founders & Innovators</li>
-              </ul>
-              <p className="text-sm font-semibold text-slate-700 mb-2">
-                Excellent Alignment For:
-              </p>
-              <ul className="space-y-1 list-disc list-inside text-slate-600 pl-1 text-sm">
-                <li>Summer & Industrial Internship Requirements</li>
-                <li>Faculty Skill Development Programs</li>
-                <li>Mini & Major Academic Project Preparation</li>
-                <li>Placement Readiness & Technical Portfolio Building</li>
-                <li>Research, Innovation & Product Development Tracks</li>
-              </ul>
-              <p className="mt-3 text-xs font-medium text-blue-600 bg-blue-50 px-3 py-1.5 rounded-lg inline-block">
-                💡 No prior robotics experience is required. Basic computer
-                knowledge is sufficient.
-              </p>
-            </div>
-          </div>
-
-          {/* Ecosystem Alignment Tabs */}
-          <h3 className="text-xl font-bold text-slate-900 mb-6 text-center">
-            Dedicated Partner & Professional Alignment
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-            <div className="bg-slate-50/60 p-4 rounded-xl border border-slate-100">
-              <h4 className="font-bold text-blue-700 text-sm mb-2">
-                For Engineering Students
-              </h4>
-              <ul className="text-xs space-y-1 text-slate-600 list-disc list-inside">
-                <li>Gain authentic practical industry experience</li>
-                <li>
-                  Build confidence handling active physical hardware arrays
-                </li>
-                <li>Construct a powerful, verifiable technical portfolio</li>
-              </ul>
-            </div>
-            <div className="bg-slate-50/60 p-4 rounded-xl border border-slate-100">
-              <h4 className="font-bold text-purple-700 text-sm mb-2">
-                For Fresh Graduates
-              </h4>
-              <ul className="text-xs space-y-1 text-slate-600 list-disc list-inside">
-                <li>
-                  Bridge the structural gap between academics and industry
-                </li>
-                <li>Master development boards used by R&D engineering firms</li>
-                <li>Drastically enhance direct post-grad employability</li>
-              </ul>
-            </div>
-            <div className="bg-slate-50/60 p-4 rounded-xl border border-slate-100">
-              <h4 className="font-bold text-blue-700 text-sm mb-2">
-                For Faculty Members
-              </h4>
-              <ul className="text-xs space-y-1 text-slate-600 list-disc list-inside">
-                <li>
-                  Upgrade standard institutional technical domain knowledge
-                </li>
-                <li>
-                  Integrate advanced hands-on learning pipelines into classrooms
-                </li>
-                <li>Establish specialized campus Robotics and STEM Clubs</li>
-              </ul>
-            </div>
-            <div className="bg-slate-50/60 p-4 rounded-xl border border-slate-100">
-              <h4 className="font-bold text-purple-700 text-sm mb-2">
-                For Working Professionals
-              </h4>
-              <ul className="text-xs space-y-1 text-slate-600 list-disc list-inside">
-                <li>Upskill in core cross-functional Automation tracks</li>
-                <li>Transition into Embedded Systems & custom IoT logic</li>
-                <li>Acquire high-demand Industry 4.0 technical skills</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Interactive Learning Roadmap Timeline */}
-          <h3 className="text-xl font-bold text-slate-900 mb-6 text-center">
-            30-Day Structured Learning Roadmap
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-            <div className="border border-slate-200 p-5 rounded-xl bg-slate-50/40 relative">
-              <span className="absolute -top-3 left-4 bg-blue-600 text-white text-xs font-bold px-2 py-0.5 rounded">
-                WEEK 1
-              </span>
-              <h4 className="font-bold text-slate-900 text-sm mt-1 mb-2">
-                Fundamentals & Logic
-              </h4>
-              <div className="text-xs text-slate-600 space-y-2">
-                <p>
-                  <strong>Mod 1-2:</strong> Industrial applications, electronics
-                  basics, circuit design paradigms.
-                </p>
-                <p>
-                  <strong>Mod 3:</strong> Arduino IDE setup, Embedded C basics,
-                  I/O parameters, Serial loops, PWM control.
-                </p>
-                <p className="text-blue-600 font-medium font-mono">
-                  ⚡ LED Blink, Traffic Controls, Smart Night Lamps.
-                </p>
-              </div>
-            </div>
-
-            <div className="border border-slate-200 p-5 rounded-xl bg-slate-50/40 relative">
-              <span className="absolute -top-3 left-4 bg-purple-600 text-white text-xs font-bold px-2 py-0.5 rounded">
-                WEEK 2
-              </span>
-              <h4 className="font-bold text-slate-900 text-sm mt-1 mb-2">
-                Sensors & Automation
-              </h4>
-              <div className="text-xs text-slate-600 space-y-2">
-                <p>
-                  <strong>Mod 4-5:</strong> Sensor configurations (IR,
-                  Ultrasonic, PIR, LDR, Temp). DC/Servo drivers, Relays,
-                  Buzzers.
-                </p>
-                <p>
-                  <strong>Mod 6:</strong> Robot chassis design rules, power path
-                  balancing, real-time hardware diagnostics.
-                </p>
-                <p className="text-purple-600 font-medium font-mono">
-                  ⚡ Obstacle Detection, Precision Meters, Robot Assembly.
-                </p>
-              </div>
-            </div>
-
-            <div className="border border-slate-200 p-5 rounded-xl bg-slate-50/40 relative">
-              <span className="absolute -top-3 left-4 bg-blue-600 text-white text-xs font-bold px-2 py-0.5 rounded">
-                WEEK 3
-              </span>
-              <h4 className="font-bold text-slate-900 text-sm mt-1 mb-2">
-                Robotics & IoT Networks
-              </h4>
-              <div className="text-xs text-slate-600 space-y-2">
-                <p>
-                  <strong>Mod 7-8:</strong> Motion patterns, sensor-guided
-                  routing logic. Wi-Fi / Bluetooth configurations with ESP32
-                  chips.
-                </p>
-                <p>
-                  <strong>Mod 9:</strong> Cloud platform dashboards, remote
-                  parameters, automation architecture loops.
-                </p>
-                <p className="text-blue-600 font-medium font-mono">
-                  ⚡ BT Mobile Robots, IoT Home Hubs, Custom Dashboards.
-                </p>
-              </div>
-            </div>
-
-            <div className="border border-blue-200 p-5 rounded-xl bg-blue-50/20 relative">
-              <span className="absolute -top-3 left-4 bg-emerald-600 text-white text-xs font-bold px-2 py-0.5 rounded">
-                WEEK 4
-              </span>
-              <h4 className="font-bold text-slate-900 text-sm mt-1 mb-2">
-                Capstone & Careers
-              </h4>
-              <div className="text-xs text-slate-600 space-y-2">
-                <p>
-                  <strong>Mod 10:</strong> Finalize a production robotics system
-                  integrating entire three-week hardware frameworks.
-                </p>
-                <p>
-                  <strong>Career Dev:</strong> Custom engineering resume
-                  architecture, GitHub repository portfolios, LinkedIn tuning,
-                  and Mock HR/Technical preparation loops.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Capstone Projects Box Grid */}
-          <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 mb-12">
-            <h4 className="font-bold text-slate-900 text-sm mb-4 uppercase tracking-wider text-center">
-              Available Capstone Innovation Projects
-            </h4>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 text-center text-xs text-slate-700 font-medium">
-              <div className="bg-white p-3 rounded-lg border border-slate-200">
-                Line Follower Robot
-              </div>
-              <div className="bg-white p-3 rounded-lg border border-slate-200">
-                Obstacle Avoiding Robot
-              </div>
-              <div className="bg-white p-3 rounded-lg border border-slate-200">
-                Smart Home Automation
-              </div>
-              <div className="bg-white p-3 rounded-lg border border-slate-200">
-                RFID Attendance Matrix
-              </div>
-              <div className="bg-white p-3 rounded-lg border border-slate-200">
-                Smart Parking Grid
-              </div>
-              <div className="bg-white p-3 rounded-lg border border-slate-200">
-                Fire Fighting Drone/Bot
-              </div>
-              <div className="bg-white p-3 rounded-lg border border-slate-200">
-                Voice Controlled Setup
-              </div>
-              <div className="bg-white p-3 rounded-lg border border-slate-200">
-                Gesture Controlled Automation
-              </div>
-              <div className="bg-white p-3 rounded-lg border border-slate-200 col-span-2 sm:col-span-1 lg:col-span-2 flex items-center justify-center">
-                Warehouse Automation Prototype
-              </div>
-            </div>
-          </div>
-
-          {/* Technologies, Outcomes, Deliverables Dark Grid */}
-          <div className="bg-slate-900 text-white rounded-xl p-6 md:p-8 space-y-8 mb-12">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                <h4 className="font-bold text-blue-400 border-b border-slate-800 pb-2 mb-3 text-sm tracking-wider uppercase">
-                  Technologies Covered
-                </h4>
-                <div className="text-xs space-y-2 text-slate-300">
-                  <p>
-                    <strong className="text-white">Software:</strong> Arduino
-                    IDE, VS Code, Git/GitHub Ecosystems
-                  </p>
-                  <p>
-                    <strong className="text-white">Hardware:</strong> Arduino
-                    UNO, ESP32 Microcontroller units
-                  </p>
-                  <p>
-                    <strong className="text-white">Sensors & Actuators:</strong>{" "}
-                    IR, Ultrasonic, PIR, LDR, Temp, Servos, DC Motors, Relays,
-                    Buzzers
-                  </p>
-                  <p>
-                    <strong className="text-white">Protocols:</strong> UART,
-                    Bluetooth, Wi-Fi connectivity matrices
-                  </p>
-                </div>
-              </div>
-              <div>
-                <h4 className="font-bold text-purple-400 border-b border-slate-800 pb-2 mb-3 text-sm tracking-wider uppercase">
-                  Internship Deliverables
-                </h4>
-                <ul className="text-xs space-y-1.5 text-slate-300">
-                  <li>• Official Internship Completion Certificate</li>
-                  <li>• Dedicated Project Completion Certificate</li>
-                  <li>• Structured Practical Engineering Workbook</li>
-                  <li>• Source Code Repository access parameters</li>
-                  <li>• Professional Project Documentation layout</li>
-                  <li>• Tailored GitHub, Resume, & LinkedIn Optimization</li>
-                  <li>• Complete Interview Toolkit & Mentorship Paths</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold text-blue-400 border-b border-slate-800 pb-2 mb-3 text-sm tracking-wider uppercase">
-                  Learning & Career Outcomes
-                </h4>
-                <ul className="text-xs space-y-1.5 text-slate-300">
-                  <li>• Engineer, wire, and balance complex automated rigs</li>
-                  <li>• Write advanced logic inside Embedded C environments</li>
-                  <li>
-                    • Troubleshoot complex software/hardware stack runtime
-                    errors
-                  </li>
-                  <li>
-                    • Prepares for target roles:{" "}
-                    <em className="text-slate-400">
-                      Robotics Engineer, Embedded Developer, IoT Architect,
-                      Automation Professional, Product R&D Engineer.
-                    </em>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Footnote Summary info */}
-          <div className="pt-6 border-t border-slate-100 flex flex-wrap justify-between items-center gap-4 text-xs text-slate-500">
-            <div>
-              <span className="font-semibold text-slate-900 block mb-0.5">
-                The Genixotech Promise:
-              </span>
-              We don't believe internships should end with just a piece of
-              paper. Every participant works with actual physical hardware,
-              tackles real engineering problems, and builds the confidence
-              needed to excel across competitive markets, deep-tech research
-              hubs, or innovative startup landscapes.
-            </div>
-          </div>
-        </section>
-      </div>
-
-      {/* --- REUSABLE FAQ & CTA BOTTOM ELEMENT --- */}
-      <div className="max-w-4xl mx-auto px-4 mt-24">
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 mb-12">
-          <h3 className="text-xl font-bold text-slate-900 mb-4 text-center">
-            Frequently Asked Questions
-          </h3>
-          <div className="space-y-4 divide-y divide-slate-100">
-            <div className="pt-2">
-              <p className="font-semibold text-slate-900">
-                Q. Do students need coding knowledge?
-              </p>
-              <p className="text-slate-600 text-sm mt-1">
-                A. No. The workshops are completely beginner-friendly.
-              </p>
-            </div>
-            <div className="pt-4">
-              <p className="font-semibold text-slate-900">
-                Q. Can you conduct the workshop at our campus?
-              </p>
-              <p className="text-slate-600 text-sm mt-1">
-                A. Yes, we conduct full on-campus installations and workshops
-                across regions.
-              </p>
-            </div>
-            <div className="pt-4">
-              <p className="font-semibold text-slate-900">
-                Q. How many students can participate?
-              </p>
-              <p className="text-slate-600 text-sm mt-1">
-                A. We can conduct workshops for a classroom or an entire school.
-              </p>
-            </div>
-            <div className="pt-4">
-              <p className="font-semibold text-slate-900">
-                Q. Will students receive certificates?
-              </p>
-              <p className="text-slate-600 text-sm mt-1">
-                A. Yes, every participant receives a certificate.
+              <p className="text-sm font-semibold text-slate-700">
+                Verified Certificates & Real Prototype Deployments
               </p>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Call to Action Card */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white mb-10 rounded-2xl p-8 md:p-12 text-center shadow-xl">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
-            Ready to inspire the next generation of innovators?
+      {/* WHY CHOOSE & PERFECT FOR */}
+      <section className="py-20 max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 flex items-center gap-2">
+            <Sparkles className="text-blue-500" size={24} /> Why Choose
+            Genixotech?
           </h2>
-          <p className="text-blue-50/90 mb-8 max-w-lg mx-auto text-sm md:text-base">
-            Partner with Genixotech to organize a Robotics Workshop or Training
-            track directly at your institution.
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {highlights.map((item, idx) => (
+              <div
+                key={idx}
+                className="flex items-center gap-2.5 text-sm text-slate-600"
+              >
+                <CheckCircle2 size={16} className="text-purple-500 shrink-0" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-slate-400 leading-relaxed pt-2">
+            Participants will assemble, program, test, and control functional
+            robots while gaining exposure to robotics technologies used in
+            manufacturing, healthcare, agriculture, logistics, and automation.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-sm font-semibold">
-            <a
-              href="tel:+919171805055"
-              className="flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-full shadow-md hover:bg-slate-50 transition-colors w-full sm:w-auto justify-center"
-            >
-              <FaPhone /> +91 91718-05055
-            </a>
-            <a
-              href="mailto:info@genixotech.com"
-              className="flex items-center gap-2 bg-purple-700/50 text-white border border-purple-400/40 px-6 py-3 rounded-full hover:bg-purple-700/80 transition-colors w-full sm:w-auto justify-center"
-            >
-              <IoMail /> info@genixotech.com
-            </a>
+        </div>
+
+        <div className="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+            <GraduationCap className="text-purple-500" size={24} /> Perfect For
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {targetAudiences.map((audience, idx) => (
+              <div
+                key={idx}
+                className="bg-white px-4 py-2.5 rounded-xl border border-slate-200/80 shadow-sm text-xs font-semibold text-slate-700 flex items-center gap-2"
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                {audience}
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* DEDICATED ECOSYSTEM ALIGNMENT */}
+      <section className="py-20 bg-slate-50/50 border-y border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
+              Dedicated Ecosystem Alignment
+            </h2>
+            <p className="text-slate-500 text-sm mt-2">
+              Customized, direct value metrics addressing every critical
+              academic stakeholder layer.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Management */}
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 border border-blue-100">
+                  <Building2 size={20} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-4">
+                  For College Management
+                </h3>
+                <ul className="space-y-2.5 text-xs text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2
+                      size={14}
+                      className="text-blue-500 shrink-0 mt-0.5"
+                    />{" "}
+                    Supports AICTE, NBA & NAAC initiatives
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2
+                      size={14}
+                      className="text-blue-500 shrink-0 mt-0.5"
+                    />{" "}
+                    Promotes innovation and practical learning
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2
+                      size={14}
+                      className="text-blue-500 shrink-0 mt-0.5"
+                    />{" "}
+                    Strengthens industry-academia collaboration
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2
+                      size={14}
+                      className="text-blue-500 shrink-0 mt-0.5"
+                    />{" "}
+                    Enhances students' employability
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2
+                      size={14}
+                      className="text-blue-500 shrink-0 mt-0.5"
+                    />{" "}
+                    Ideal for induction programs, technical fests and innovation
+                    weeks
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* T&P */}
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-4 border border-purple-100">
+                  <Briefcase size={20} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-4">
+                  For Training & Placement Cell
+                </h3>
+                <ul className="space-y-2.5 text-xs text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2
+                      size={14}
+                      className="text-purple-500 shrink-0 mt-0.5"
+                    />{" "}
+                    Introduces students to robotics and Industry 4.0
+                    technologies
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2
+                      size={14}
+                      className="text-purple-500 shrink-0 mt-0.5"
+                    />{" "}
+                    Improves practical and technical skills
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2
+                      size={14}
+                      className="text-purple-500 shrink-0 mt-0.5"
+                    />{" "}
+                    Enhances internship and placement readiness
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2
+                      size={14}
+                      className="text-purple-500 shrink-0 mt-0.5"
+                    />{" "}
+                    Encourages project-based learning
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2
+                      size={14}
+                      className="text-purple-500 shrink-0 mt-0.5"
+                    />{" "}
+                    Bridges the industry skill gap
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Faculty & Students */}
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm md:col-span-2 lg:col-span-1">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 border border-emerald-100">
+                  <GraduationCap size={20} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-4">
+                  For Faculty & Students
+                </h3>
+                <h4 className="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-2">
+                  Faculty Members:
+                </h4>
+                <ul className="space-y-1.5 text-xs text-slate-600 mb-4">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 size={12} className="text-emerald-500" />{" "}
+                    Exposure to Robotics and Embedded Systems
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 size={12} className="text-emerald-500" />{" "}
+                    Faculty Development Program support
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 size={12} className="text-emerald-500" />{" "}
+                    Assistance in establishing Robotics and Innovation Clubs
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 size={12} className="text-emerald-500" />{" "}
+                    Project mentoring framework & guidance
+                  </li>
+                </ul>
+                <h4 className="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-2">
+                  Students:
+                </h4>
+                <ul className="space-y-1.5 text-xs text-slate-600">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 size={12} className="text-emerald-500" />{" "}
+                    Learn Robotics through practical implementation
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 size={12} className="text-emerald-500" />{" "}
+                    Build autonomous robots &amp; interface sensors
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 size={12} className="text-emerald-500" />{" "}
+                    Discover career opportunities in Robotics & Embedded
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* INTERACTIVE WORKSHOP CURRICULUM */}
+      <section
+        id="syllabus"
+        ref={syllabusRef}
+        className="py-20 max-w-5xl mx-auto px-4 sm:px-6 scroll-mt-6"
+      >
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold sm:text-4xl flex items-center justify-center gap-2 text-slate-900 font-extrabold">
+            <Layers className="text-blue-500" /> Workshop Curriculum
+          </h2>
+          <p className="text-slate-500 mt-2 text-sm">
+            Comprehensive 3-Day breakdown mapping structural theory sections to
+            live laboratory hardware setups.
+          </p>
+        </div>
+
+        {/* Dynamic Day Switch Tabs */}
+        <div className="flex border-b border-slate-200 mb-8 max-w-md mx-auto justify-center">
+          <button
+            onClick={() => setActiveTab("day1")}
+            className={`flex-1 py-3 text-sm font-semibold border-b-2 text-center transition-colors ${
+              activeTab === "day1"
+                ? "border-purple-500 text-purple-600"
+                : "border-transparent text-slate-400 hover:text-slate-600"
+            }`}
+          >
+            Day 01
+          </button>
+          <button
+            onClick={() => setActiveTab("day2")}
+            className={`flex-1 py-3 text-sm font-semibold border-b-2 text-center transition-colors ${
+              activeTab === "day2"
+                ? "border-purple-500 text-purple-600"
+                : "border-transparent text-slate-400 hover:text-slate-600"
+            }`}
+          >
+            Day 02
+          </button>
+          <button
+            onClick={() => setActiveTab("day3")}
+            className={`flex-1 py-3 text-sm font-semibold border-b-2 text-center transition-colors ${
+              activeTab === "day3"
+                ? "border-purple-500 text-purple-600"
+                : "border-transparent text-slate-400 hover:text-slate-600"
+            }`}
+          >
+            Day 03
+          </button>
+        </div>
+
+        {/* Dynamic Curriculum Modules Box */}
+        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+          {activeTab === "day1" && (
+            <div className="space-y-8 animate-fadeIn">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-1 rounded-md border border-purple-100">
+                  Module 1
+                </span>
+                <h3 className="text-lg font-semibold text-slate-800 mt-2 mb-4">
+                  Introduction to Robotics
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
+                  <div className="bg-white p-4 rounded-xl border border-slate-200/60">
+                    <h4 className="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2">
+                      Students Explore
+                    </h4>
+                    <ul className="space-y-1.5">
+                      <li>• What is Robotics?</li>
+                      <li>• Evolution of Autonomous Robots</li>
+                      <li>• Types and Anatomy of Robots</li>
+                      <li>• Autonomous vs. Remote-Controlled Robots</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-4 rounded-xl border border-slate-200/60">
+                    <h4 className="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2">
+                      Robotics Applications & Careers
+                    </h4>
+                    <ul className="space-y-1.5">
+                      <li>• Manufacturing &amp; Warehouse Automation</li>
+                      <li>• Healthcare, Agriculture &amp; Service Robotics</li>
+                      <li>• Robotics Career Opportunities</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t border-slate-200 pt-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-1 rounded-md border border-purple-100">
+                  Module 2
+                </span>
+                <h3 className="text-lg font-semibold text-slate-800 mt-2 mb-4">
+                  Embedded Systems &amp; Arduino
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
+                  <div className="bg-white p-4 rounded-xl border border-slate-200/60">
+                    <h4 className="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2">
+                      Topics Covered
+                    </h4>
+                    <ul className="space-y-1.5">
+                      <li>• Introduction to Embedded Systems</li>
+                      <li>• Arduino UNO Architecture &amp; Arduino IDE</li>
+                      <li>• Digital &amp; Analog I/O and GPIO</li>
+                      <li>• Embedded C Basics &amp; Serial Communication</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-4 rounded-xl border border-purple-100 bg-purple-50/20">
+                    <h4 className="text-xs uppercase tracking-wider text-purple-600 font-bold mb-2 flex items-center gap-1">
+                      <Code2 size={12} /> Live Practical Session
+                    </h4>
+                    <ul className="space-y-1.5 font-medium text-slate-700">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2
+                          size={14}
+                          className="text-purple-500 shrink-0"
+                        />{" "}
+                        Arduino Setup
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2
+                          size={14}
+                          className="text-purple-500 shrink-0"
+                        />{" "}
+                        LED Blinking
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2
+                          size={14}
+                          className="text-purple-500 shrink-0"
+                        />{" "}
+                        Serial Monitor Communication
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2
+                          size={14}
+                          className="text-purple-500 shrink-0"
+                        />{" "}
+                        Digital Input &amp; Output
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "day2" && (
+            <div className="space-y-8 animate-fadeIn">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-1 rounded-md border border-purple-100">
+                  Module 3
+                </span>
+                <h3 className="text-lg font-semibold text-slate-800 mt-2 mb-4">
+                  Sensors, Motors &amp; Robot Assembly
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
+                  <div className="bg-white p-4 rounded-xl border border-slate-200/60">
+                    <h4 className="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2">
+                      Students Work With
+                    </h4>
+                    <ul className="space-y-1.5">
+                      <li>• IR Sensor Array</li>
+                      <li>• Ultrasonic Sensor</li>
+                      <li>• DC Motors &amp; Motor Driver</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-4 rounded-xl border border-slate-200/60">
+                    <h4 className="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2">
+                      Topics
+                    </h4>
+                    <ul className="space-y-1.5">
+                      <li>• Sensor Calibration &amp; Interfacing</li>
+                      <li>• Motor Speed and Direction Control</li>
+                      <li>• Robot Chassis Assembly &amp; Testing</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t border-slate-200 pt-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-1 rounded-md border border-purple-100">
+                  Module 4
+                </span>
+                <h3 className="text-lg font-semibold text-slate-800 mt-2 mb-4">
+                  Autonomous &amp; Bluetooth Robot Control
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
+                  <div className="bg-white p-4 rounded-xl border border-slate-200/60">
+                    <h4 className="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2">
+                      Students Learn
+                    </h4>
+                    <ul className="space-y-1.5">
+                      <li>• Line-Following Logic</li>
+                      <li>• Obstacle Detection &amp; Navigation</li>
+                      <li>• Bluetooth Mobile Control</li>
+                      <li>• Bluetooth HC-05 Integration</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-4 rounded-xl border border-purple-100 bg-purple-50/20">
+                    <h4 className="text-xs uppercase tracking-wider text-purple-600 font-bold mb-2 flex items-center gap-1">
+                      <Code2 size={12} /> Live Practical Session
+                    </h4>
+                    <ul className="space-y-1.5 font-medium text-slate-700">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2
+                          size={14}
+                          className="text-purple-500 shrink-0"
+                        />{" "}
+                        Line Follower Robot
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2
+                          size={14}
+                          className="text-purple-500 shrink-0"
+                        />{" "}
+                        Obstacle Avoidance Robot
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2
+                          size={14}
+                          className="text-purple-500 shrink-0"
+                        />{" "}
+                        Bluetooth Controlled Robot
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "day3" && (
+            <div className="space-y-8 animate-fadeIn">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-1 rounded-md border border-purple-100">
+                  Module 5
+                </span>
+                <h3 className="text-lg font-semibold text-slate-800 mt-2 mb-4">
+                  Robot Intelligence &amp; Industrial Applications
+                </h3>
+                <div className="bg-white p-5 rounded-xl border border-slate-200/60 text-sm text-slate-600">
+                  <h4 className="text-xs uppercase tracking-wider text-slate-400 font-bold mb-3">
+                    Topics Covered
+                  </h4>
+                  <ul className="space-y-2">
+                    <li>• Robot Control Architectures</li>
+                    <li>• Real-Time Sensor Feedback</li>
+                    <li>• Industrial and Service Robotics Overview</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="border-t border-slate-200 pt-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-1 rounded-md border border-purple-100">
+                  Module 6
+                </span>
+                <h3 className="text-lg font-semibold text-slate-800 mt-2 mb-4">
+                  Innovation Challenge
+                </h3>
+                <div className="bg-gradient-to-br from-purple-500/5 to-blue-500/5 border border-purple-500/10 p-5 rounded-xl text-sm text-slate-600 space-y-3">
+                  <p>
+                    Students work in teams to design and develop a functional
+                    mobile robot using sensors, Arduino boards, motor drivers,
+                    robot chassis, and control algorithms.
+                  </p>
+                  <p className="font-semibold text-slate-800 flex items-center gap-2 text-xs">
+                    <Terminal size={14} className="text-purple-500" /> Teams
+                    present their final working solutions to industry mentors to
+                    receive core technical evaluation and expert feedback loops.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* HARDWARE TECHNOLOGIES COVERED */}
+      <section className="py-16 bg-slate-900 text-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <h3 className="text-center text-xs uppercase tracking-widest text-slate-400 font-bold mb-8">
+            Technologies, Tools &amp; Frameworks Covered
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
+            <div className="p-4 rounded-xl bg-slate-800/60 border border-slate-700/50">
+              <h4 className="text-[10px] text-purple-400 font-bold tracking-wider uppercase mb-1">
+                Programming
+              </h4>
+              <p className="text-sm font-semibold text-slate-200">Embedded C</p>
+            </div>
+            <div className="p-4 rounded-xl bg-slate-800/60 border border-slate-700/50">
+              <h4 className="text-[10px] text-purple-400 font-bold tracking-wider uppercase mb-1">
+                Hardware
+              </h4>
+              <p className="text-xs font-semibold text-slate-200">
+                Arduino UNO / Robot Chassis
+              </p>
+            </div>
+            <div className="p-4 rounded-xl bg-slate-800/60 border border-slate-700/50">
+              <h4 className="text-[10px] text-purple-400 font-bold tracking-wider uppercase mb-1">
+                Communication
+              </h4>
+              <p className="text-xs font-semibold text-slate-200">
+                UART / Bluetooth
+              </p>
+            </div>
+            <div className="p-4 rounded-xl bg-slate-800/60 border border-slate-700/50">
+              <h4 className="text-[10px] text-purple-400 font-bold tracking-wider uppercase mb-1">
+                Sensors
+              </h4>
+              <p className="text-xs font-semibold text-slate-200">
+                IR / Ultrasonic / Motor Driver
+              </p>
+            </div>
+            <div className="p-4 rounded-xl bg-slate-800/60 border border-slate-700/50 col-span-2 sm:col-span-1">
+              <h4 className="text-[10px] text-purple-400 font-bold tracking-wider uppercase mb-1">
+                Software
+              </h4>
+              <p className="text-xs font-semibold text-slate-200">
+                Arduino IDE / Embedded C
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* HANDS-ON PROJECTS GRID */}
+      <section className="py-20 max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold sm:text-4xl flex items-center justify-center gap-3 text-slate-900">
+            <Hammer className="text-purple-500" /> Hands-on Projects
+          </h2>
+          <p className="text-slate-600 mt-2 text-sm">
+            Students build and experience live hardware components directly on
+            site.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          {projects.map((project, idx) => (
+            <div
+              key={idx}
+              className="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-blue-500/20 transition-all group"
+            >
+              <div>
+                <Cpu
+                  className="text-purple-500 mb-4 group-hover:scale-110 transition-transform"
+                  size={28}
+                />
+                <h3 className="text-sm font-bold text-slate-800 group-hover:text-purple-600 transition-colors mb-2">
+                  {project}
+                </h3>
+              </div>
+              <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                <span>Lab Environment</span>
+                <span className="text-purple-600 font-medium group-hover:translate-x-0.5 transition-transform">
+                  Build →
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* OUTCOMES & DELIVERABLES */}
+      <section className="py-20 bg-slate-50 border-y border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+              <CheckCircle2 className="text-purple-500" size={20} /> Learning
+              Outcomes
+            </h3>
+            <div className="space-y-3">
+              {outcomes.map((outcome, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600"
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0 mt-2" />
+                  <span>
+                    After completing the workshop, students will be able to{" "}
+                    {outcome.charAt(0).toLowerCase() + outcome.slice(1)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+            <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+              <Award className="text-blue-500" size={20} /> Workshop
+              Deliverables
+            </h3>
+            <div className="space-y-4">
+              {deliverables.map((deliverable, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-3 text-xs sm:text-sm font-semibold text-slate-700 pb-3 border-b border-slate-100 last:border-0 last:pb-0"
+                >
+                  <div className="w-6 h-6 rounded bg-blue-50 text-blue-600 flex items-center justify-center text-[10px]">
+                    0{idx + 1}
+                  </div>
+                  {deliverable}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FLEXIBLE DURATION SELECTOR TAB RIG */}
+      <section className="py-20 max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900">
+            Available Engagement Formats
+          </h2>
+          <p className="text-slate-500 text-sm mt-2">
+            Select the configuration architecture that matches your academic
+            time budget.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+          <div className="md:col-span-1 flex flex-col gap-2">
+            {formats.map((f) => (
+              <button
+                key={f.name}
+                onClick={() => setActiveFormat(f.name)}
+                className={`w-full text-left px-4 py-3 rounded-xl font-medium text-xs transition-all flex items-center justify-between border ${
+                  activeFormat === f.name
+                    ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white border-transparent shadow-md"
+                    : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
+                }`}
+              >
+                <span className="truncate pr-2">{f.name}</span>
+                <ArrowRight
+                  size={14}
+                  className={`shrink-0 ${activeFormat === f.name ? "opacity-100" : "opacity-40"}`}
+                />
+              </button>
+            ))}
+          </div>
+
+          <div className="md:col-span-2 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm min-h-[220px] flex flex-col justify-between">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-purple-600 flex items-center gap-1 mb-2">
+                <Clock size={12} /> Format Configuration Overview
+              </span>
+              <h3 className="text-lg font-bold text-slate-800 mb-3">
+                {activeFormat}
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                {formats.find((f) => f.name === activeFormat)?.desc}
+              </p>
+            </div>
+            <div className="border-t border-slate-100 pt-4 mt-6 text-[11px] text-slate-400">
+              * Structured deployment paths include hardware kit sourcing
+              roadmaps and post-workshop support loops.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* INSTITUTIONAL VALUE REASONS */}
+      <section className="py-20 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
+              Why Engineering Colleges Choose Genixotech
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {choices.map((choice, idx) => (
+              <div
+                key={idx}
+                className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center gap-3"
+              >
+                <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
+                <span className="text-xs sm:text-sm font-medium text-slate-700">
+                  {choice}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTINUOUS CAREER PATHS */}
+      <section className="py-20 max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <h2 className="text-2xl font-bold text-slate-900 mb-2">
+          Career Path After the Workshop
+        </h2>
+        <p className="text-slate-500 text-sm mb-8 max-w-xl mx-auto">
+          This workshop serves as the foundation for students interested in
+          Robotics, Embedded Systems, Automation, and Intelligent Product
+          Development.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left mb-12">
+          {careerPaths.map((path, idx) => (
+            <div
+              key={idx}
+              className="bg-white p-4 rounded-xl border border-slate-200/80 shadow-sm text-xs font-semibold text-slate-700 flex items-center gap-3 hover:border-purple-500/30 transition-colors"
+            >
+              <div className="w-2 h-2 rounded-full bg-purple-500 shrink-0" />
+              {path}
+            </div>
+          ))}
+        </div>
+
+        {/* OUTCOME / CERTIFICATE 3D BOX ROW PREVIEW */}
+        <div className="bg-gradient-to-r from-blue-500/5 to-purple-500/5 border border-purple-500/10 rounded-3xl p-8 sm:p-12 relative overflow-hidden flex flex-col md:flex-row items-center text-left gap-8">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="flex-1 space-y-4">
+            <h3 className="text-2xl font-bold text-slate-900">
+              Get Certified Upon Completion
+            </h3>
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+              Receive a verified Genixotech Participation Certificate showcasing
+              your newly acquired technical abilities in circuit analysis, code
+              execution, component interface, and wireless telemetry deployment
+              maps.
+            </p>
+            <ul className="space-y-1 text-xs text-slate-500 font-medium">
+              <li>• Shareable on LinkedIn Profiles &amp; Technical CVs</li>
+              <li>• Validated tracking credential signature references</li>
+            </ul>
+          </div>
+
+          <div className="w-full md:w-72 aspect-[4/3] bg-white rounded-xl border border-slate-200 shadow-xl flex flex-col items-center justify-center p-6 text-center relative rotate-2 hover:rotate-0 transition-transform duration-300 shrink-0">
+            <Award className="text-purple-500 mb-2" size={40} />
+            <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">
+              Certificate of Participation
+            </span>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 my-2 rounded-full" />
+            <p className="text-xs font-serif font-semibold text-slate-700">
+              Robotics Workshop
+            </p>
+            <div className="w-full h-2 bg-slate-100 mt-4 rounded" />
+            <div className="w-2/3 h-2 bg-slate-100 mt-2 rounded" />
+          </div>
+        </div>
+      </section>
     </div>
   );
-};
-
-export default RoboticsPage;
+}

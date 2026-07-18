@@ -155,15 +155,15 @@ const HelpCenter = () => {
   return (
     <div className="w-full min-h-screen bg-gray-50 text-gray-800 font-sans pb-20">
       {/* --- HEADER HERO BLOCK --- */}
-      <div className="w-full bg-[#1f272b] text-white py-16 md:py-20 flex justify-center border-b border-gray-800">
+      <div className="w-full bg-gradient-to-r from-blue-500 px-2 to-purple-500 text-white py-16 md:py-20 flex justify-center border-b border-gray-800">
         <div className="w-[83%] text-center md:text-left">
-          <span className="text-[#839ffc] font-bold tracking-widest text-sm uppercase block mb-2">
+          <span className="text-white font-bold tracking-widest text-sm uppercase block mb-2">
             Support Database
           </span>
           <h1 className="text-3xl md:text-5xl font-black tracking-tight mb-4">
-            Help Center. We're Here for You! 👋
+            Help Center. We're Here for You!
           </h1>
-          <p className="max-w-2xl text-gray-400 text-base md:text-lg leading-relaxed">
+          <p className="max-w-2xl text-white-400 text-base md:text-lg leading-relaxed">
             Whether you're a student building code, a parent matching tracks, or
             a collegiate representative setting up advanced engineering labs,
             we're optimized to resolve your operational queries in real-time.
@@ -243,11 +243,17 @@ const HelpCenter = () => {
                           {faq.question}
                         </span>
                         <FaChevronDown
-                          className={`text-gray-400 transition-transform duration-200 shrink-0 text-sm ${isOpen ? "rotate-180 text-[#1D52FF]" : ""}`}
+                          className={`text-gray-400 transition-transform duration-200 shrink-0 text-sm ${
+                            isOpen ? "rotate-180 text-[#1D52FF]" : ""
+                          }`}
                         />
                       </button>
                       <div
-                        className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-[300px] border-t border-gray-100" : "max-h-0"}`}
+                        className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                          isOpen
+                            ? "max-h-[300px] border-t border-gray-100"
+                            : "max-h-0"
+                        }`}
                       >
                         <p className="p-5 text-sm text-gray-600 leading-relaxed bg-gray-50/30">
                           {faq.answer}

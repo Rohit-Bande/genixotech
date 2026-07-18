@@ -5,7 +5,7 @@ export const workshopoptions = [
     cName: "dropdown-link",
   },
   {
-    title: "Embedded",
+    title: "PCB Design",
     path: "/embedded",
     cName: "dropdown-link",
   },
