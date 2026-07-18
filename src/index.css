@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+html {
+  /* font-size: 62.5%; */
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-slideLeft {
+  animation: slideLeft 0.3s ease forwards;
+}
+.animate-slideRight {
+  animation: slideRight 0.3s ease forwards;
+}
